@@ -5,12 +5,16 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Board board = new Board();
-        System.out.println(Arrays.deepToString(board.board));
+        System.out.println(board.showBoard());
 
+        Player playerX = new Player('X');
+
+        int[] temp = new int[]{0,0};
+        playerX.setLastMove(temp);
+        board.updateLastMove(playerX);
+        System.out.println(board.showBoard());
         board.isFull();
-        board.showBoard();
         board.isWinner();
-       // board.updateLastMove();
 
     }
 }

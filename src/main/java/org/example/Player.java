@@ -3,7 +3,7 @@ package org.example;
 public class Player {
     private char token;
     private int roundsPlayed = 0;
-    private char[][] lastMove = new char[3][3];
+    private int[] lastMove = new int[2];
 
     public Player(char token) {
         this.token = token;
@@ -25,11 +25,11 @@ public class Player {
         this.roundsPlayed = roundsPlayed;
     }
 
-    public char[][] getLastMove() {
+    public int[] getLastMove() {
         return lastMove;
     }
 
-    public void setLastMove(char[][] lastMove) {
+    public void setLastMove(int[] lastMove) {
         this.lastMove = lastMove;
     }
 }

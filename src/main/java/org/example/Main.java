@@ -22,7 +22,7 @@ public class Main {
         System.out.println(board.showBoard());
 
         System.out.println(board.isFull());
-        board.isWinner();
+        board.isWinner(playerY);
 
     }
 }

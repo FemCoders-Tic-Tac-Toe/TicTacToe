@@ -71,16 +71,18 @@ public class Game {
     }
 
     public void updateTokens(){
-        // test token and name are different for each player
+        System.out.println("The name and token must be unique for each player. ");
         for(int i = 0; i < this.players.length; i++){
-            System.out.print("Name for Player " + (i+1) + ": ");
-            String name = scan.next();
-            this.players[i].setName(name);
-            scan.nextLine();
-            System.out.print("Token for Player " + (i+1) + ": ");
-            char token = scan.next().charAt(0);
-            this.players[i].setToken(token);
-            scan.nextLine();
+            do {
+                System.out.print("Player " + (i + 1) + ".\tName: ");
+                String name = scan.next();
+                this.players[i].setName(name);
+                scan.nextLine();
+                System.out.print("\t\t\tToken: ");
+                char token = scan.next().charAt(0);
+                this.players[i].setToken(token);
+                scan.nextLine();
+            } while (this.players[0].getName().equals(this.players[1].getName()) || this.players[0].getToken() == this.players[1].getToken());
         }
     }
 

@@ -33,7 +33,7 @@ public class Game {
         System.out.println("\t\tStarting TicTacToe");
         System.out.println(this.instructions);
 
-//        this.askToUpdateTokens();
+        this.askToUpdateTokens();
         this.newGame();
     }
 
@@ -80,6 +80,19 @@ public class Game {
         } else {
             System.out.println("Unexpected input");
             this.askToContinue();
+        }
+    }
+    public void askToUpdateTokens() {
+        System.out.print("Do you want to choose your personalized tokens? (y/n) ");
+        String response = scan.next().toLowerCase();
+        scan.nextLine();
+        if (response.equals("yes") || response.equals("y")) {
+            this.updateTokens();
+        } else if (response.equals("no") || response.equals("n")) {
+            System.out.println("Default tokens will be used: X and O");
+        } else {
+            System.out.println("Unexpected input");
+            this.askToUpdateTokens();
         }
     }
 }

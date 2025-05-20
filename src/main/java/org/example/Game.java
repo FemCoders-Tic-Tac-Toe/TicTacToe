@@ -8,7 +8,7 @@ public class Game {
     private Player playerO = new Player('O', "Player O");
     private Player [] players = {this.playerX,  this.playerO};
 
-    String instructions = "\n\t📜 GAME RULES - TIC TAC TOE 📜\n" +
+    String instructions = "\n\t\t\t📜 GAME RULES - TIC TAC TOE 📜\n" +
             "\t╔═══════════════════════════════════════════════════════════\n" +
             "\t║ 1️⃣ The game is played by two players on a 3×3 grid.       \n" +
             "\t║ 2️⃣ You can choose the token you want                      \n" +
@@ -20,16 +20,19 @@ public class Game {
             "\t║ 5️⃣ If all 9 squares are full and no one has won: TIE 🤝   \n" +
             "\t╚═══════════════════════════════════════════════════════════\n";
 
-    String askPlayer = "Choose a row (1-3) and a column (1-3)";
+    String askPlayer = "Choose a row (1-3) and a column (1-3): ";
+    String tieMessage = "It's a TIE 🤝";
+    String winnerMessage = "\uD83C\uDFC6 WINNER is player ";
+    String outcomeMessage = "";
 
     Scanner scan = new Scanner(System.in);
 
     public Game(){}
 
     public void startGame(){
-        System.out.println("\t╔══════════════════════════════╗");
-        System.out.println("\t║       🎮 TIC TAC TOE 🎮      ║");
-        System.out.println("\t╚══════════════════════════════╝");
+        System.out.println("\n\t\t\t╔══════════════════════════════╗");
+        System.out.println("\t\t\t        🎮 TIC TAC TOE 🎮      ");
+        System.out.println("\t\t\t╚══════════════════════════════╝");
         System.out.println(this.instructions);
 
         this.askToUpdateTokens();
@@ -37,32 +40,19 @@ public class Game {
     }
 
     public void newGame(){
-        System.out.println("New Game");
+        System.out.println("\n\t\t\t════ New Game ════\n");
         this.board = new Board();
-
-        System.out.println("Games won");
+        this.outcomeMessage = "";
+        System.out.println("Games won:");
         for(Player player: this.players) {
-            System.out.println("Player " + player.getName() + ": " + player.getGamesWon());
+            System.out.println("\tPlayer " + player.getName() + ": " + player.getGamesWon());
             player.setRoundsPlayed(0);
         }
+        System.out.println("Empty board:");
+        System.out.println(this.board.showBoard() + "\n");
 
-        System.out.println(this.board.showBoard());
-
-        boolean newTurn = true;
-        while (newTurn){
-            Player currentPlayer = this.players[0];
-            Player nextPlayer = this.players[1];
-            newTurn = newRound(this.players[0]);
-            this.players[0] = nextPlayer;
-            this.players[1] = currentPlayer;
-            if (this.board.isFull()) {
-                System.out.println("Tie");
-                this.askToContinue();
-            }
-        }
-        Player winner = this.players[1];
-        System.out.println("Winner is player " + winner.getName());
-        winner.setGamesWon(winner.getGamesWon()+1);
+        this.newTurn();
+        System.out.println(this.outcomeMessage);
         this.askToContinue();
     }
 
@@ -94,21 +84,34 @@ public class Game {
         }
     }
 
-    public boolean newRound(Player player){
+    public void newTurn(){
+        if (!this.board.isFull()) {
+            Player currentPlayer = this.players[0];
+            Player nextPlayer = this.players[1];
+            this.players[0] = nextPlayer;
+            this.players[1] = currentPlayer;
+            this.newPlay(currentPlayer);
+        } else {
+            this.outcomeMessage = this.tieMessage;
+        }
+    }
+
+    public void newPlay(Player player){
         this.askPlayer(player);
         player.setRoundsPlayed(player.getRoundsPlayed()+1);
         this.board.updateLastMove(player);
         System.out.println(this.board.showBoard());
-        if (player.getRoundsPlayed() < 3){
-            return true;
-        } else {
-            return !this.board.isWinner(player);
-            }
+        if (player.getRoundsPlayed() < 3 ||!this.board.isWinner(player)){
+            this.newTurn();
+        }else {
+            this.outcomeMessage = this.winnerMessage + player.getName();
+            player.setGamesWon(player.getGamesWon()+1);
+        }
     }
 
     public void askPlayer(Player player){
         try {
-            System.out.println("Player " + player.getName() + ". Round: " + (player.getRoundsPlayed() + 1) + ". " + this.askPlayer);
+            System.out.print("Player " + player.getName() + ". Round: " + (player.getRoundsPlayed() + 1) + ". " + this.askPlayer);
             int[] position = new int[2];
             for (int i = 0; i < position.length; i++) {
                 position[i] = scan.nextInt() - 1;

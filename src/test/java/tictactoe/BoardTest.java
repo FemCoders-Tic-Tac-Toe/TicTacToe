@@ -4,7 +4,11 @@ import org.example.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,6 +58,27 @@ public class BoardTest {
         int[] position = {row, col};
         playerX.setLastMove(position);
         boolean result = board.checkMoveAllowed(playerX);
+        assertFalse(result, "Move 1, 2 not allowed");
+    }
+
+    private static Stream<Arguments> isWinner_ThreeMoves_ReturnsFalse() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 2}, new int[]{2, 2}, new int[]{1, 0}),
+                Arguments.of(new int[]{1, 2}, new int[]{1, 0}, new int[]{0, 2}),
+                Arguments.of(new int[]{1, 2}, new int[]{1, 2}, new int[]{1, 2})
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource()
+    void isWinner_ThreeMoves_ReturnsFalse(int[] position1, int[] position2, int[] position3){
+        playerX.setLastMove(position1);
+        board.updateLastMove(playerX);
+        playerX.setLastMove(position2);
+        board.updateLastMove(playerX);
+        playerX.setLastMove(position3);
+        board.updateLastMove(playerX);
+        boolean result = board.isWinner(playerX);
         assertFalse(result, "Move 1, 2 not allowed");
     }
 }

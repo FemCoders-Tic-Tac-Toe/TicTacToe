@@ -28,4 +28,12 @@ public class Game {
             scan.nextLine();
         }
     }
+
+    public void startGame(){
+        System.out.println("\t\tStarting TicTacToe");
+        System.out.println(this.instructions);
+
+//        this.askToUpdateTokens();
+//        this.newGame();
+    }
 }

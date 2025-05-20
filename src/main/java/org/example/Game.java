@@ -96,18 +96,14 @@ public class Game {
 
     public boolean newRound(Player player){
         this.askPlayer(player);
-        if (!this.board.checkMoveAllowed(player)){
-            return newRound(player);
-        } else{
-            player.setRoundsPlayed(player.getRoundsPlayed()+1);
-            this.board.updateLastMove(player);
-            System.out.println(this.board.showBoard());
-            if (player.getRoundsPlayed() < 3){
-                return true;
-            } else {
-                return !this.board.isWinner(player);
+        player.setRoundsPlayed(player.getRoundsPlayed()+1);
+        this.board.updateLastMove(player);
+        System.out.println(this.board.showBoard());
+        if (player.getRoundsPlayed() < 3){
+            return true;
+        } else {
+            return !this.board.isWinner(player);
             }
-        }
     }
 
     public void askPlayer(Player player){
@@ -119,6 +115,9 @@ public class Game {
             }
             scan.nextLine();
             player.setLastMove(position);
+            if (!this.board.checkMoveAllowed(player)){
+                this.askPlayer(player);
+            }
         } catch (InputMismatchException exception){
             System.out.println("Invalid input, choose a number in between 1 and 3");
             scan.nextLine();

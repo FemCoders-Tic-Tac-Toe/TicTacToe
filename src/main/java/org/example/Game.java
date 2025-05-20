@@ -34,6 +34,52 @@ public class Game {
         System.out.println(this.instructions);
 
 //        this.askToUpdateTokens();
-//        this.newGame();
+        this.newGame();
+    }
+
+    public void newGame(){
+        System.out.println("New Game");
+        board = new Board();
+
+        System.out.println("Games won");
+        for(Player player: this.players) {
+            System.out.println("Player " + player.getName() + ": " + player.getGamesWon());
+            player.setRoundsPlayed(0);
+        }
+
+        System.out.println(board.showBoard());
+
+        boolean ans = true;
+        while (ans){
+            Player currentPlayer = this.players[0];
+            Player nextPlayer = this.players[1];
+//            ans = newRound(this.players[0]);
+            this.players[0] = nextPlayer;
+            this.players[1] = currentPlayer;
+            if (board.isFull()) {
+                System.out.println("Tie");
+                this.askToContinue();
+            }
+        }
+        Player winner = this.players[1];
+        System.out.println("Winner is player " + winner.getName());
+        winner.setGamesWon(winner.getGamesWon()+1);
+        this.askToContinue();
+    }
+    public void askToContinue() {
+        System.out.print("Do you want to play another game? (y/n) ");
+        String response = scan.next().toLowerCase();
+        scan.nextLine();
+        if (response.equals("yes") || response.equals("y")) {
+            System.out.println("Restarting the game...\n");
+            this.newGame();
+        } else if (response.equals("no") || response.equals("n")) {
+            System.out.println("Exiting...");
+            scan.close();
+            System.exit(0);
+        } else {
+            System.out.println("Unexpected input");
+            this.askToContinue();
+        }
     }
 }

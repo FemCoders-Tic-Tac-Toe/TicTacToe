@@ -1,9 +1,8 @@
 package org.example;
 
-import java.util.Arrays;
+import java.util.InputMismatchException;
 
 public class Board {
-
     public char[][] board = new char[3][3];
 
     public Board() {
@@ -12,8 +11,6 @@ public class Board {
                 board[row][col] = '_';
             }
         }
-
-
     }
 
     public String showBoard() {
@@ -25,8 +22,23 @@ public class Board {
             }
             boardString += "\n";
         }
-        System.out.println("test showBoard");
         return boardString;
+    }
+
+    public boolean checkMoveAllowed(Player player) {
+        int row = player.getLastMove()[0];
+        int col = player.getLastMove()[1];
+        try {
+            if (board[row][col] == '_') {
+                return true;
+            } else{
+                System.out.println("That space is not empty");
+                return false;
+            }
+        } catch (ArrayIndexOutOfBoundsException exceptionIndex){
+            System.out.println("Out of range. Choose a number for a row and column between 1 and 3");
+        }
+        return false;
     }
 
     public void updateLastMove (Player player ) {
@@ -35,8 +47,6 @@ public class Board {
         if (board[row][col] == '_') {
             board[row][col] = player.getToken();
         }
-
-        System.out.println("test updateLastMove");
     }
 
     public boolean isWinner (Player player) {
@@ -55,7 +65,6 @@ public class Board {
         if (board[0][2] == token && board[1][1] == token && board[2][0] == token){
             return true;
         }
-        System.out.println("no hay ganador");
         return false;
     }
 
@@ -67,10 +76,6 @@ public class Board {
                 }
             }
         }
-        System.out.println("si esta lleno es true");
         return true;
     }
-
-
-    //{'_','_','_'}, {'_','_','_'}, {'_','_','_'};
 }

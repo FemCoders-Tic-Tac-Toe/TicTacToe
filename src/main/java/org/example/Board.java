@@ -37,8 +37,8 @@ public class Board {
             }
         } catch (ArrayIndexOutOfBoundsException exceptionIndex){
             System.out.println("Out of range. Choose a number for a row and column between 1 and 3");
+            return false;
         }
-        return false;
     }
 
     public void updateLastMove (Player player ) {

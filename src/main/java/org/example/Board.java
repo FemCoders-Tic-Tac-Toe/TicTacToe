@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.InputMismatchException;
-
 public class Board {
     public char[][] board = new char[3][3];
 
@@ -14,15 +12,15 @@ public class Board {
     }
 
     public String showBoard() {
-        String boardString = " ";
+        String boardString = "\t╔═══════════════╗";
         for (int row = 0; row < 3; row++) {
-            boardString += "\t\t";
+            boardString += "\n\t║\t";
             for (int col = 0; col < 3; col++) {
                 boardString += this.board[row][col] + "\t";
             }
-            boardString += "\n";
+            boardString += "║";
         }
-        return boardString;
+        return boardString + "\n\t╚═══════════════╝";
     }
 
     public boolean checkMoveAllowed(Player player) {

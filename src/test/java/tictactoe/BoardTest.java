@@ -3,6 +3,8 @@ import org.example.Board;
 import org.example.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,12 +24,36 @@ public class BoardTest {
     @Test
     void checkMove_1row2col_ReturnsTrue(){
 
-        int[] arr = {1, 2};
-        playerX.setLastMove(arr);
+        int[] position = {1, 2};
+        playerX.setLastMove(position);
 
         boolean result = board.checkMoveAllowed(playerX);
 
         assertTrue(result, "Move 1, 2 not allowed");
 
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 2",
+            "2, 2"
+    })
+    void checkMove_TwoIntegers_ReturnsTrue(int row, int col){
+        int[] position = {row, col};
+        playerX.setLastMove(position);
+        boolean result = board.checkMoveAllowed(playerX);
+        assertTrue(result, "Move 1, 2 not allowed");
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "-1, 2",
+            "3, 6"
+    })
+    void checkMove_TwoIntegers_ReturnsFalse(int row, int col){
+        int[] position = {row, col};
+        playerX.setLastMove(position);
+        boolean result = board.checkMoveAllowed(playerX);
+        assertFalse(result, "Move 1, 2 not allowed");
     }
 }

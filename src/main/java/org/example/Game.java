@@ -79,35 +79,39 @@ public class Game {
 
     public void updateTokens(){
         System.out.println("The name and token must be unique for each player. ");
-        for(int i = 0; i < this.players.length; i++){
-            boolean repeatName;
-            boolean repeatToken;
+        for (Player player : players){
+            player.setName("");
+            player.setToken('_');
+        }
+
+        int playerNumber = 1;
+        for (Player player : players){
+
             do {
-                System.out.print("Player " + (i + 1) + ".\tName: ");
+                System.out.print("Player " + playerNumber + ".\tName: ");
                 String name = scan.next();
-                this.players[i].setName(name);
                 scan.nextLine();
-
-                if(this.players[0].getName().equals(this.players[1].getName())) {
+                player.setName(name);
+                if (this.players[0].getName().equals(this.players[1].getName())) {
                     System.out.println("Name already taken. Use a different name");
-                    repeatName = true;
-                    continue;
+                } else {
+                    break;
                 }
-                repeatName = false;
-                do{
-                    System.out.print("\t\t\tToken: ");
-                    char token = scan.next().charAt(0);
-                    this.players[i].setToken(token);
-                    scan.nextLine();
+            } while (true);
 
-                    if(this.players[0].getToken() == this.players[1].getToken()) {
-                        System.out.println("Token already taken. Use a different token");
-                        repeatToken = true;
-                        continue;
-                    }
-                    repeatToken = false;
-                } while (repeatToken);
-            } while (repeatName);
+            do {
+                System.out.print("\t\t\tToken: ");
+                char token = scan.next().charAt(0);
+                scan.nextLine();
+                player.setToken(token);
+                if(this.players[0].getToken() == this.players[1].getToken() || token == '_') {
+                    System.out.println("Token already taken. Use a different token");
+                } else {
+                    break;
+                }
+            } while (true);
+
+            playerNumber++;
         }
     }
 

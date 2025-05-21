@@ -49,7 +49,7 @@ public class Game {
 
     public void newGame(){
         this.setupNewGame();
-        System.out.println(this.outcomeMessage);
+        System.out.println(this.newGameMessage);
         System.out.println("Games won:");
         for(Player player: this.players) {
             System.out.println("\tPlayer " + player.getName() + ": " + player.getGamesWon());
@@ -80,18 +80,50 @@ public class Game {
     public void updateTokens(){
         System.out.println("The name and token must be unique for each player. ");
         for(int i = 0; i < this.players.length; i++){
+            boolean repeatName;
+            boolean repeatToken;
             do {
                 System.out.print("Player " + (i + 1) + ".\tName: ");
                 String name = scan.next();
                 this.players[i].setName(name);
                 scan.nextLine();
-                System.out.print("\t\t\tToken: ");
-                char token = scan.next().charAt(0);
-                this.players[i].setToken(token);
-                scan.nextLine();
-            } while (this.players[0].getName().equals(this.players[1].getName()) || this.players[0].getToken() == this.players[1].getToken());
+
+                if(this.players[0].getName().equals(this.players[1].getName())) {
+                    System.out.println("Name already taken. Use a different name");
+                    repeatName = true;
+                    continue;
+                }
+                repeatName = false;
+                do{
+                    System.out.print("\t\t\tToken: ");
+                    char token = scan.next().charAt(0);
+                    this.players[i].setToken(token);
+                    scan.nextLine();
+
+                    if(this.players[0].getToken() == this.players[1].getToken()) {
+                        System.out.println("Token already taken. Use a different token");
+                        repeatToken = true;
+                        continue;
+                    }
+                    repeatToken = false;
+                } while (repeatToken);
+            } while (repeatName);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void newTurn(){
         if (!this.board.isFull()) {

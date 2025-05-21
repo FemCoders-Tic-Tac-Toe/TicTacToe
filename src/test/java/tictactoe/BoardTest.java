@@ -33,6 +33,27 @@ public class BoardTest {
 
     }
 
+    @Test
+    void isFull_WhenBoardIsFull_ReturnsTrue(){
+        for (int row=0; row<3; row++) {
+            for (int col=0; col<3; col++) {
+                board.board[row][col] = 'X';
+            }
+        }
+        assertTrue(board.isFull(), "Board is full");
+    }
+
+    @Test
+    void isFull_WhenBoardIsNotFull_ReturnsFalse() {
+        for (int row=0; row<3; row++) {
+            for (int col=0; col<3; col++) {
+                board.board[row][col] = 'X';
+            }
+        }
+        board.board[1][1] = '_';
+        assertFalse(board.isFull(), "Board has an empty cell");
+    }
+
     @ParameterizedTest
     @CsvSource({
             "0, 2",

@@ -111,20 +111,6 @@ public class Game {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void newTurn(){
         if (!this.board.isFull()) {
             Player currentPlayer = this.players[0];

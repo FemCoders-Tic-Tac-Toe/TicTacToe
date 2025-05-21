@@ -1,7 +1,7 @@
 package org.example;
 
 public class Board {
-    private char[][] board = new char[3][3];
+    private final char[][] board = new char[3][3];
 
     public Board() {
         for (int row = 0; row < 3; row++){

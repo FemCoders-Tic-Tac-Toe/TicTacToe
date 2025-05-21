@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Game {
     private Board board;
-    private Player playerX = new Player('X', "Player X");
-    private Player playerO = new Player('O', "Player O");
+    public Player playerX = new Player('X', "Player X");
+    public Player playerO = new Player('O', "Player O");
     private Player [] players = {this.playerX,  this.playerO};
 
     String instructions = "\n\t\t\t📜 GAME RULES - TIC TAC TOE 📜\n" +
@@ -145,5 +145,13 @@ public class Game {
             System.out.println("Unexpected input");
             this.askToContinue();
         }
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public String getOutcomeMessage() {
+        return outcomeMessage;
     }
 }

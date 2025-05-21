@@ -12,15 +12,16 @@ public class Board {
     }
 
     public String showBoard() {
-        String boardString = "\t╔═══════════════╗";
+        StringBuilder boardString = new StringBuilder();
+        boardString.append("\t╔═══════════════╗");
         for (int row = 0; row < 3; row++) {
-            boardString += "\n\t║\t";
+            boardString.append("\n\t║\t");
             for (int col = 0; col < 3; col++) {
-                boardString += this.board[row][col] + "\t";
+                boardString.append(this.board[row][col]).append("\t");
             }
-            boardString += "║";
+            boardString.append("║");
         }
-        return boardString + "\n\t╚═══════════════╝";
+        return boardString.append("\n\t╚═══════════════╝").toString();
     }
 
     public boolean checkMoveAllowed(Player player) {

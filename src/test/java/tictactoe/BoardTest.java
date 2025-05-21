@@ -42,7 +42,7 @@ public class BoardTest {
     void isFull_WhenBoardIsFull_ReturnsTrue(){
         for (int row=0; row<3; row++) {
             for (int col=0; col<3; col++) {
-                board.board[row][col] = 'X';
+                board.getBoard()[row][col] = 'X';
             }
         }
         assertTrue(board.isFull(), "Board is full");
@@ -52,10 +52,10 @@ public class BoardTest {
     void isFull_WhenBoardIsNotFull_ReturnsFalse() {
         for (int row=0; row<3; row++) {
             for (int col=0; col<3; col++) {
-                board.board[row][col] = 'X';
+                board.getBoard()[row][col] = 'X';
             }
         }
-        board.board[1][1] = '_';
+        board.getBoard()[1][1] = '_';
         assertFalse(board.isFull(), "Board has an empty cell");
     }
 

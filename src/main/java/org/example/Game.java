@@ -8,18 +8,18 @@ public class Game {
     public Player playerO = new Player('O', "Player O");
     private Player [] players = {this.playerX,  this.playerO};
 
-    String logo = "\\n\\t\\t\\t╔══════════════════════════════╗\n\t\t\t        🎮 TIC TAC TOE 🎮      \n\t\t\t╚══════════════════════════════╝";
-    String instructions = "\n\t\t\t📜 GAME RULES - TIC TAC TOE 📜\n" +
-            "\t╔═══════════════════════════════════════════════════════════\n" +
-            "\t║ 1️⃣ The game is played by two players on a 3×3 grid.       \n" +
-            "\t║ 2️⃣ You can choose the token you want                      \n" +
-            "\t║    Otherwise, the default tokens are ❌ and ⭕.           \n" +
-            "\t║ 3️⃣ Players take turns placing their token in empty cells. \n" +
-            "\t║    ➤ Choose a number for a row (1-3) and a column (1-3)   \n" +
-            "\t║      separated by a space. Example:  2 2                  \n" +
-            "\t║ 4️⃣ The first to align 3 tokens (↕ ↔ ↖︎↘︎) wins the game.   \n" +
-            "\t║ 5️⃣ If all 9 squares are full and no one has won: TIE 🤝   \n" +
-            "\t╚═══════════════════════════════════════════════════════════\n";
+    String logo = "\n\t\t\t\t\t╔══════════════════════════════╗\n\t\t\t\t\t        🎮 TIC TAC TOE 🎮      \n\t\t\t\t\t╚══════════════════════════════╝";
+    String instructions = "\n\t\t\t\t\t📜 GAME RULES - TIC TAC TOE 📜\n" +
+            "\t╔═══════════════════════════════════════════════════════════╗\n" +
+            "\t  1️⃣ The game is played by two players on a 3×3 grid.       \n" +
+            "\t  2️⃣ You can choose the token you want                      \n" +
+            "\t     Otherwise, the default tokens are ❌ and ⭕.           \n" +
+            "\t  3️⃣ Players take turns placing their token in empty cells. \n" +
+            "\t     ➤ Choose a number for a row (1-3) and a column (1-3)   \n" +
+            "\t       separated by a space. Example:  2 2                  \n" +
+            "\t  4️⃣ The first to align 3 tokens (↕ ↔ ↖︎↘︎) wins the game.   \n" +
+            "\t  5️⃣ If all 9 squares are full and no one has won: TIE 🤝   \n" +
+            "\t╚═══════════════════════════════════════════════════════════╝\n";
 
     String newGameMessage = "\n\t\t\t════ New Game ════\n";
     String askPlayer = "Choose a row (1-3) and a column (1-3): ";

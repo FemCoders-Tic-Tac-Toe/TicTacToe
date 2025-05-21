@@ -8,6 +8,7 @@ public class Game {
     private Player playerO = new Player('O', "Player O");
     private Player [] players = {this.playerX,  this.playerO};
 
+    String logo = "\\n\\t\\t\\t╔══════════════════════════════╗\n\t\t\t        🎮 TIC TAC TOE 🎮      \n\t\t\t╚══════════════════════════════╝";
     String instructions = "\n\t\t\t📜 GAME RULES - TIC TAC TOE 📜\n" +
             "\t╔═══════════════════════════════════════════════════════════\n" +
             "\t║ 1️⃣ The game is played by two players on a 3×3 grid.       \n" +
@@ -20,6 +21,7 @@ public class Game {
             "\t║ 5️⃣ If all 9 squares are full and no one has won: TIE 🤝   \n" +
             "\t╚═══════════════════════════════════════════════════════════\n";
 
+    String newGameMessage = "\n\t\t\t════ New Game ════\n";
     String askPlayer = "Choose a row (1-3) and a column (1-3): ";
     String tieMessage = "It's a TIE 🤝";
     String winnerMessage = "\uD83C\uDFC6 WINNER is player ";
@@ -30,19 +32,24 @@ public class Game {
     public Game(){}
 
     public void startGame(){
-        System.out.println("\n\t\t\t╔══════════════════════════════╗");
-        System.out.println("\t\t\t        🎮 TIC TAC TOE 🎮      ");
-        System.out.println("\t\t\t╚══════════════════════════════╝");
+        System.out.println(this.logo);
         System.out.println(this.instructions);
 
         this.askToUpdateTokens();
         this.newGame();
     }
 
-    public void newGame(){
-        System.out.println("\n\t\t\t════ New Game ════\n");
+    public void setupNewGame() {
         this.board = new Board();
         this.outcomeMessage = "";
+        for(Player player: this.players) {
+            player.setRoundsPlayed(0);
+        }
+    }
+
+    public void newGame(){
+        this.setupNewGame();
+        System.out.println(this.outcomeMessage);
         System.out.println("Games won:");
         for(Player player: this.players) {
             System.out.println("\tPlayer " + player.getName() + ": " + player.getGamesWon());

@@ -8,18 +8,18 @@ public class Game {
     public Player playerO = new Player('O', "Player O");
     private Player [] players = {this.playerX,  this.playerO};
 
-    String logo = "\\n\\t\\t\\t╔══════════════════════════════╗\n\t\t\t        🎮 TIC TAC TOE 🎮      \n\t\t\t╚══════════════════════════════╝";
-    String instructions = "\n\t\t\t📜 GAME RULES - TIC TAC TOE 📜\n" +
-            "\t╔═══════════════════════════════════════════════════════════\n" +
-            "\t║ 1️⃣ The game is played by two players on a 3×3 grid.       \n" +
-            "\t║ 2️⃣ You can choose the token you want                      \n" +
-            "\t║    Otherwise, the default tokens are ❌ and ⭕.           \n" +
-            "\t║ 3️⃣ Players take turns placing their token in empty cells. \n" +
-            "\t║    ➤ Choose a number for a row (1-3) and a column (1-3)   \n" +
-            "\t║      separated by a space. Example:  2 2                  \n" +
-            "\t║ 4️⃣ The first to align 3 tokens (↕ ↔ ↖︎↘︎) wins the game.   \n" +
-            "\t║ 5️⃣ If all 9 squares are full and no one has won: TIE 🤝   \n" +
-            "\t╚═══════════════════════════════════════════════════════════\n";
+    String logo = "\n\t\t\t\t\t╔══════════════════════════════╗\n\t\t\t\t\t        🎮 TIC TAC TOE 🎮      \n\t\t\t\t\t╚══════════════════════════════╝";
+    String instructions = "\n\t\t\t\t\t📜 GAME RULES - TIC TAC TOE 📜\n" +
+            "\t╔═══════════════════════════════════════════════════════════╗\n" +
+            "\t  1️⃣ The game is played by two players on a 3×3 grid.       \n" +
+            "\t  2️⃣ You can choose the token you want                      \n" +
+            "\t     Otherwise, the default tokens are ❌ and ⭕.           \n" +
+            "\t  3️⃣ Players take turns placing their token in empty cells. \n" +
+            "\t     ➤ Choose a number for a row (1-3) and a column (1-3)   \n" +
+            "\t       separated by a space. Example:  2 2                  \n" +
+            "\t  4️⃣ The first to align 3 tokens (↕ ↔ ↖︎↘︎) wins the game.   \n" +
+            "\t  5️⃣ If all 9 squares are full and no one has won: TIE 🤝   \n" +
+            "\t╚═══════════════════════════════════════════════════════════╝\n";
 
     String newGameMessage = "\n\t\t\t════ New Game ════\n";
     String askPlayer = "Choose a row (1-3) and a column (1-3): ";
@@ -49,7 +49,7 @@ public class Game {
 
     public void newGame(){
         this.setupNewGame();
-        System.out.println(this.outcomeMessage);
+        System.out.println(this.newGameMessage);
         System.out.println("Games won:");
         for(Player player: this.players) {
             System.out.println("\tPlayer " + player.getName() + ": " + player.getGamesWon());
@@ -80,16 +80,34 @@ public class Game {
     public void updateTokens(){
         System.out.println("The name and token must be unique for each player. ");
         for(int i = 0; i < this.players.length; i++){
+            boolean repeatName;
+            boolean repeatToken;
             do {
                 System.out.print("Player " + (i + 1) + ".\tName: ");
                 String name = scan.next();
                 this.players[i].setName(name);
                 scan.nextLine();
-                System.out.print("\t\t\tToken: ");
-                char token = scan.next().charAt(0);
-                this.players[i].setToken(token);
-                scan.nextLine();
-            } while (this.players[0].getName().equals(this.players[1].getName()) || this.players[0].getToken() == this.players[1].getToken());
+
+                if(this.players[0].getName().equals(this.players[1].getName())) {
+                    System.out.println("Name already taken. Use a different name");
+                    repeatName = true;
+                    continue;
+                }
+                repeatName = false;
+                do{
+                    System.out.print("\t\t\tToken: ");
+                    char token = scan.next().charAt(0);
+                    this.players[i].setToken(token);
+                    scan.nextLine();
+
+                    if(this.players[0].getToken() == this.players[1].getToken()) {
+                        System.out.println("Token already taken. Use a different token");
+                        repeatToken = true;
+                        continue;
+                    }
+                    repeatToken = false;
+                } while (repeatToken);
+            } while (repeatName);
         }
     }
 

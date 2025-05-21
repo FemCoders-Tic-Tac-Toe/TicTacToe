@@ -2,11 +2,16 @@ package tictactoe;
 import org.example.Board;
 import org.example.Player;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.*;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class BoardTest {
     Player playerX;
@@ -76,5 +81,51 @@ public class BoardTest {
         playerX.setLastMove(position);
         boolean result = board.checkMoveAllowed(playerX);
         assertFalse(result, "Move 1, 2 not allowed");
+    }
+
+    private static Stream<Arguments> acceptableArg() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 2}, new int[]{2, 2}, new int[]{1, 0}),
+                Arguments.of(new int[]{1, 2}, new int[]{1, 0}, new int[]{0, 2}),
+                Arguments.of(new int[]{1, 2}, new int[]{1, 2}, new int[]{1, 2})
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("acceptableArg")
+    void isWinner_ThreeMoves_ReturnsFalse(int[] position1, int[] position2, int[] position3){
+        playerX.setLastMove(position1);
+        board.updateLastMove(playerX);
+        playerX.setLastMove(position2);
+        board.updateLastMove(playerX);
+        playerX.setLastMove(position3);
+        board.updateLastMove(playerX);
+        boolean result = board.isWinner(playerX);
+        assertFalse(result, "Move 1, 2 not allowed");
+    }
+
+    public static class BoardArgumentProvider implements ArgumentsProvider {
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
+            return Stream.of(
+                    arguments(new int[]{1, 1}, new int[]{2, 2}, new int[]{0, 0}, new char[][]{{ 'X', '_','_'}, {'_','X','_'},{'_','_','X'}}),
+                    arguments(new int[]{0, 1}, new int[]{0, 2}, new int[]{0, 0}, new char[][]{{ 'X', 'X','X'}, {'_','_','_'},{'_','_','_'}}),
+                    arguments(new int[]{0, 1}, new int[]{2, 1}, new int[]{1, 1}, new char[][]{{ '_', 'X','_'}, {'_','X','_'},{'_','X','_'}})
+            );
+        }
+    }
+
+    @DisplayName("Update board")
+    @ParameterizedTest
+    @ArgumentsSource(BoardArgumentProvider.class)
+    void updateBoard_ThreeMoves_ReturnsBoardState(int[] position1, int[] position2, int[] position3, char [][] expected){
+        playerX.setLastMove(position1);
+        board.updateLastMove(playerX);
+        playerX.setLastMove(position2);
+        board.updateLastMove(playerX);
+        playerX.setLastMove(position3);
+        board.updateLastMove(playerX);
+        char [][] result = board.getBoard();
+        assertArrayEquals(expected, result);
     }
 }

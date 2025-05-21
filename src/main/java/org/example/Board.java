@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.InputMismatchException;
-
 public class Board {
     public char[][] board = new char[3][3];
 
@@ -14,15 +12,15 @@ public class Board {
     }
 
     public String showBoard() {
-        String boardString = " ";
+        String boardString = "\t╔═══════════════╗";
         for (int row = 0; row < 3; row++) {
-            boardString += "\t\t";
+            boardString += "\n\t║\t";
             for (int col = 0; col < 3; col++) {
                 boardString += this.board[row][col] + "\t";
             }
-            boardString += "\n";
+            boardString += "║";
         }
-        return boardString;
+        return boardString + "\n\t╚═══════════════╝";
     }
 
     public boolean checkMoveAllowed(Player player) {
@@ -37,8 +35,8 @@ public class Board {
             }
         } catch (ArrayIndexOutOfBoundsException exceptionIndex){
             System.out.println("Out of range. Choose a number for a row and column between 1 and 3");
+            return false;
         }
-        return false;
     }
 
     public void updateLastMove (Player player ) {
@@ -77,5 +75,9 @@ public class Board {
             }
         }
         return true;
+    }
+
+    public char[][] getBoard() {
+        return board;
     }
 }

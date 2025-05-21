@@ -1,7 +1,7 @@
 package org.example;
 
 public class Board {
-    public char[][] board = new char[3][3];
+    private final char[][] board = new char[3][3];
 
     public Board() {
         for (int row = 0; row < 3; row++){
@@ -12,15 +12,16 @@ public class Board {
     }
 
     public String showBoard() {
-        String boardString = "\t╔═══════════════╗";
+        StringBuilder boardString = new StringBuilder();
+        boardString.append("\t╔═══════════════╗");
         for (int row = 0; row < 3; row++) {
-            boardString += "\n\t║\t";
+            boardString.append("\n\t║\t");
             for (int col = 0; col < 3; col++) {
-                boardString += this.board[row][col] + "\t";
+                boardString.append(this.board[row][col]).append("\t");
             }
-            boardString += "║";
+            boardString.append("║");
         }
-        return boardString + "\n\t╚═══════════════╝";
+        return boardString.append("\n\t╚═══════════════╝").toString();
     }
 
     public boolean checkMoveAllowed(Player player) {
@@ -50,20 +51,11 @@ public class Board {
     public boolean isWinner (Player player) {
         char token = player.getToken();
         for (int i = 0; i < 3; i++) {
-            if (board[i][0] == token && board[i][1] == token && board[i][2] == token) {
-                return true;
-            }
-            if (board[0][i] == token && board[1][i] == token && board[2][i] == token) {
+            if ((board[i][0] == token && board[i][1] == token && board[i][2] == token)||(board[0][i] == token && board[1][i] == token && board[2][i] == token)){
                 return true;
             }
         }
-        if (board[0][0] == token && board[1][1] == token && board[2][2] == token){
-            return true;
-        }
-        if (board[0][2] == token && board[1][1] == token && board[2][0] == token){
-            return true;
-        }
-        return false;
+        return (board[0][0] == token && board[1][1] == token && board[2][2] == token) || (board[0][2] == token && board[1][1] == token && board[2][0] == token);
     }
 
     public boolean isFull() {

@@ -1,13 +1,10 @@
-<p align ="center"><img src="assets/img/logo-blanca.png" alt="TicTacToe" height=200px></p>
 
-# ❌⭕ Let's play Tic Tac Toe ⭕❌
+<p align="center"><img alt="Tic Tac Toe logo" height="200px" src="./docs/images/TicTacToe-Logo.jpg"/></p>
 
-This game allows two players to compete against each other on java.
+# Let's play Tic Tac Toe!
 
-- [❌⭕ Let's play Tic Tac Toe ⭕❌](#-lets-play-tic-tac-toe-)
+- [Let's play Tic Tac Toe](#-lets-play-tic-tac-toe-)
   - [Project description](#project-description)
-    - [Context](#context)
-    - [Goals](#goals)
   - [Main features](#main-features)
     - [How to play](#how-to-play)
   - [Views](#views)
@@ -26,12 +23,15 @@ This game allows two players to compete against each other on java.
 
 ## Project description
 
+We developed the classic game known as **Tic Tac Toe**, or Tres en Raya, where two players participate, represented by tokens **X** and **O**. The dynamics of the game are played out on a grid of **3x3** and player X always makes the first move.
 
+The objective of each player is to line up three of their tokens in a row, be it in vertical, horizontal or diagonal. In the event that all squares of the board are filled and neither player gets a winning line the game ends in a tie. 
 
-### Context
+When each game comes to an end the final result is shown, informing if one of the players has won or if it’s a tie.
+
+**Context**
 This project was developed as part of the FemCoders P1 Bootcamp (Project for educational use).
 
-### Goals
 
 ## Main features
 
@@ -57,11 +57,13 @@ If all 9 squares are full and no one has won it's a tie.
 
 5️⃣ Now the player can decide to continue playing. y/n  
 
-If n the program prints on screen the number of games played and how many each player has won and the program finishes.
+If no the program prints on screen the number of games played and how many each player has won and the program finishes.
 
 ## Views
-
-<p align = center><img src="assets/img/logo-blanca.png" alt="TicTacToe" height=200px></p>
+<p align ="center">
+<img alt="Game rules" height="300" src="./docs/images/game_rules.png"/>
+<img alt="New game" height="200" src="./docs/images/new_game.png"/>
+<img alt="Winner message" height="100" src="./docs/images/winner_message.png"/></p>
 
 ## 📋 Technical requirements
 
@@ -92,7 +94,7 @@ If n the program prints on screen the number of games played and how many each p
 ![GitHub icon](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 
 ### Programming language
-Java 21 <p align ="center"><img alt="Java icon" height="20px" src="./docs/imgages/java_icon.png" title="Java 21"/></p>
+Java 21 <img alt="Texto alternativo de la imagen" height="50" src="./docs/images/java_icon.png"/>
 
 ### Methodologies
 - GitFlow

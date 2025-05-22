@@ -3,25 +3,25 @@
 
 # Let's play Tic Tac Toe!
 
-- [Let's play Tic Tac Toe](#-lets-play-tic-tac-toe-)
-  - [Project description](#project-description)
-  - [Main features](#main-features)
+- [Let's play Tic Tac Toe!](#-lets-play-tic-tac-toe-!)
+  - [⭕❌ About the project](#-about-the-project-)
+  - [🎛️ Features](#-features)
     - [How to play](#how-to-play)
-  - [Views](#views)
+  - [ 🖼️ Views](#-views)
   - [📋 Technical requirements](#-technical-requirements)
     - [Functional](#functional)
     - [Non-functional](#non-functional)
-  - [🛠️ Working environment](#️-working-environment)
+  - [🛠️ Working environment](#-working-environment)
     - [Tools](#tools)
     - [Programming language](#programming-language)
     - [Methodologies](#methodologies)
   - [🧪 Testing](#-testing)
-  - [💻  Installation](#--installation)
+  - [💻  Installation](#-installation)
   - [🚀 Next steps](#-next-steps)
   - [👥 Authors](#-authors)
 
 
-## Project description
+## ⭕❌ About the project 
 
 We developed the classic game known as **Tic Tac Toe**, or Tres en Raya, where two players participate, represented by tokens **X** and **O**. The dynamics of the game are played out on a grid of **3x3** and player X always makes the first move.
 
@@ -29,15 +29,15 @@ The objective of each player is to line up three of their tokens in a row, be it
 
 When each game comes to an end the final result is shown, informing if one of the players has won or if it’s a tie.
 
-**Context**
+**Context**\
 This project was developed as part of the FemCoders P1 Bootcamp (Project for educational use).
 
 
-## Main features
+## 🎛️ Features
 
 **Additional features**
 - Choose your personalized name and token used in the board.
-- Save number of games won
+- Save the number of games won
 
 ### How to play
 
@@ -59,11 +59,11 @@ If all 9 squares are full and no one has won it's a tie.
 
 If no the program prints on screen the number of games played and how many each player has won and the program finishes.
 
-## Views
+##  🖼️ Views
 <p align ="center">
-<img alt="Game rules" height="300" src="./docs/images/game_rules.png"/>
+<img alt="Game rules" height="300" src="./docs/images/game_rules.png"/> <br>
 <img alt="New game" height="200" src="./docs/images/new_game.png"/>
-<img alt="Winner message" height="100" src="./docs/images/winner_message.png"/></p>
+<img alt="Winner message" height="200" src="./docs/images/winner_message.png"/></p>
 
 ## 📋 Technical requirements
 
